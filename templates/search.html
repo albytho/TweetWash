@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+  <form action="/search" method="POST">
+    <div class="form-group row">
+    	<div class = "col-xs-2">
+		    <label>I want to search...</label>
+		    <input type="text" name="username" class="form-control" placeholder="@Username"/>
+      </div>
+    </div>    
+
+
+    <div class="form-group row">
+      <div class = "col-xs-2">
+        <label>for their last ____ tweets</label>
+        <input type="number" name="number_of_tweets" class="form-control" placeholder="Number of tweets"/>
+      </div>
+    </div>  
+
+    <button type="submit" class="btn btn-primary">Sweep</button>
+  </form>
+  <br/>
+  <br/>
+
+<table class="table table-bordered">
+  <thead>
+    {% if bad_tweets %}
+      <tr>
+        <th>We Found These Potentially Adverse Tweets...</th>
+      </tr>
+    {% endif %}
+  </thead>
+  <tbody>
+  	{% for tweet in bad_tweets %}
+		<tr>
+	      <td>{{tweet}}</td>
+	    </tr>
+  	{% endfor %}
+  </tbody>
+</table>
+{% endblock %}
