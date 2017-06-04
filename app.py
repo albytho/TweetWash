@@ -31,7 +31,7 @@ def index():
 	    bad_tweets[:] = []
 	    for statuses in stuff:
 	        analysis = TextBlob(statuses.text)
-	        if str(analysis.sentiment)[19] == '-':
+	        if analysis.sentiment.polarity < -0.15:
 	            bad_tweets.append(str(statuses.text) + '  ---- (' + str(statuses.created_at) + ')')
 	    return render_template('search.html',bad_tweets=bad_tweets)
     return render_template('search.html')
