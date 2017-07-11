@@ -24,6 +24,7 @@ def home():
 def index():
     if request.method == 'POST':
 	    username = request.form['username']
+	    username = username.rstrip()
 	    number_of_tweets = request.form['number_of_tweets']
 	    if username[0] is '@':
 	        username = username[1:]
