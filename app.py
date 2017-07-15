@@ -31,9 +31,10 @@ def index():
 	    stuff = api.user_timeline(screen_name=username, count=number_of_tweets, include_rts=False)
 	    bad_tweets[:] = []
 	    for statuses in stuff:
-	        analysis = TextBlob(statuses.text)
+	        statuses_text = statuses.text
+	        analysis = TextBlob(statuses_text)
 	        if analysis.sentiment.polarity < -0.15:
-	            bad_tweets.append(str(statuses.text) + '  ---- (' + str(statuses.created_at) + ')')
+	            bad_tweets.append(statuses_text + '  ---- (' + str(statuses.created_at) + ')')
 	    return render_template('search.html',bad_tweets=bad_tweets)
     return render_template('search.html')
 
